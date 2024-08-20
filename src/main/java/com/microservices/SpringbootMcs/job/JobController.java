@@ -23,7 +23,7 @@ public class JobController {
     public JobController(JobService jobService){
         this.jobService=jobService;
     }
-    @GetMapping("")
+    @GetMapping()
     public ResponseEntity<List<Job>> findAll(){
         List<Job> jobList = jobService.findAll();
         return new ResponseEntity<>(jobList,HttpStatus.OK);
