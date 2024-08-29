@@ -1,0 +1,13 @@
+docker run -d --name db -e POSTGRES_PASSWORD=embarkx postgres
+docker run -d --name pgadmin -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=embarkx dpage/pgadmin4
+
+docker exec -it pgadmin ping db
+
+docker rm -f db pgadmin
+
+using networks
+docker network create my-network
+
+docker run -d --name db --network my-network -e POSTGRES_PASSWORD=mysecretpassword postgres
+
+docker run -d --name pgadmin --network my-network -e PGADMIN_DEFAULT_EMAIL=user@domain.com -e PGADMIN_DEFAULT_PASSWORD=Supersecret dpage/pgadmin4
