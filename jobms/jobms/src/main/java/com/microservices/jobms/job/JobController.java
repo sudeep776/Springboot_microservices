@@ -1,10 +1,13 @@
 package com.microservices.jobms.job;
 
+import com.microservices.jobms.job.Dto.JobwithCompanyDto;
+import com.microservices.jobms.job.external.Company;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +27,10 @@ public class JobController {
         this.jobService=jobService;
     }
     @GetMapping()
-    public ResponseEntity<List<Job>> findAll(){
-        List<Job> jobList = jobService.findAll();
+    public ResponseEntity<List<JobwithCompanyDto>> findAll(){
+        List<JobwithCompanyDto> jobList = jobService.findAll();
+//        RestTemplate restTemplate = new RestTemplate();
+//        restTemplate.getForObject("localhost:8081/companies/1", Company.class);
         return new ResponseEntity<>(jobList,HttpStatus.OK);
     }
 

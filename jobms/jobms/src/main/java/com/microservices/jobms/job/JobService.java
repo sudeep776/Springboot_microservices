@@ -1,12 +1,12 @@
 package com.microservices.jobms.job;
 
-import org.springframework.stereotype.Service;
+import com.microservices.jobms.job.Dto.JobwithCompanyDto;
 
 import java.util.List;
 
 
 public interface JobService {
-    List<Job> findAll();
+    List<JobwithCompanyDto> findAll();
     void createJob(Job job);
 
     Job getJobByID(Long id);
